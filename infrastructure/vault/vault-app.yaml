@@ -1,4 +1,4 @@
-apiVersion: argoproj.io/v1alpha1
+capiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: vault
@@ -12,9 +12,15 @@ spec:
     helm:
       parameters:
         - name: "server.dev.enabled"
-          value: "true" # Dev mode is ideal for local/lab environments as it auto-unseals!
+          value: "true"
         - name: "server.route.enabled"
-          value: "true" # Automatically exposes Vault's UI on OpenShift via an OCP Route!
+          value: "true"
+        - name: "injector.enabled"
+          value: "false" # Disables the vault-agent-injector completely
+        - name: "server.image.repository"
+          value: "docker.io/hashicorp/vault"
+        - name: "server.image.tag"
+          value: "1.15.2"
   destination:
     server: https://kubernetes.default.svc
     namespace: vault
