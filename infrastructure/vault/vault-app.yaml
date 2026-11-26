@@ -18,7 +18,7 @@ spec:
         - name: "injector.enabled"
           value: "false" # Disables the vault-agent-injector completely
         - name: "server.image.repository"
-          value: "docker.io/hashicorp/vault"
+          value: "image-registry.openshift-image-registry.svc:5000/registry-images/vault"
         - name: "server.image.tag"
           value: "1.15.2"
   destination:
