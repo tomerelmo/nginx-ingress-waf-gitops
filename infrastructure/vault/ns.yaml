@@ -1,0 +1,5 @@
+on: v1
+kind: Namespace
+metadata:
+    name: vault
+
