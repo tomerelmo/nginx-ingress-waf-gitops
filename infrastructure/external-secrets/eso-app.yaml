@@ -9,6 +9,35 @@ spec:
     chart: external-secrets
     repoURL: https://charts.external-secrets.io
     targetRevision: 0.9.11
+    helm:
+      parameters:
+        # Disable hardcoded security contexts so OpenShift can assign its own
+        - name: "securityContext.runAsUser"
+          value: "null"
+        - name: "securityContext.runAsGroup"
+          value: "null"
+        - name: "securityContext.fsGroup"
+          value: "null"
+        - name: "securityContext.seccompProfile"
+          value: "null"
+        # Mirror for Webhook
+        - name: "webhook.securityContext.runAsUser"
+          value: "null"
+        - name: "webhook.securityContext.runAsGroup"
+          value: "null"
+        - name: "webhook.securityContext.fsGroup"
+          value: "null"
+        - name: "webhook.securityContext.seccompProfile"
+          value: "null"
+        # Mirror for Cert Controller
+        - name: "certController.securityContext.runAsUser"
+          value: "null"
+        - name: "certController.securityContext.runAsGroup"
+          value: "null"
+        - name: "certController.securityContext.fsGroup"
+          value: "null"
+        - name: "certController.securityContext.seccompProfile"
+          value: "null"
   destination:
     server: https://kubernetes.default.svc
     namespace: external-secrets
